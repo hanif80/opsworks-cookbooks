@@ -1,5 +1,3 @@
-include_recipe 'apache2'
-
 packages = []
 
 case node[:platform]
@@ -27,21 +25,10 @@ when 'debian', 'ubuntu'
 when 'centos', 'redhat', 'fedora', 'amazon'
   # TODO: Compile php-sqlite extension for RHEL based systems.
   packages = [
-    'php-xml',
-    'php-common',
-    'php-xmlrpc',
-    'php-devel',
-    'php-gd',
-    'php-cli',
-    'php-pear-Auth-SASL',
-    'php-mysql',
-    'php-mcrypt',
-    'php-pecl-memcache',
-    'php-pear',
-    'php-pear-XML-Parser',
-    'php-pear-Mail-Mime',
-    'php-pear-DB',
-    'php-pear-HTML-Common'
+    'php54w-cli.x86_64',
+    'php54w-common.x86_64',
+    'php55w-imap.x86_64',
+    'php54w-devel.x86_64',
   ]
 end
 
@@ -50,5 +37,3 @@ packages.each do |pkg|
     action :install
   end
 end
-
-include_recipe 'apache2::mod_php5'
